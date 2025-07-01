@@ -1,40 +1,105 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Solar ROI & Electricity Cost Simulator</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              'brand-primary': '#0D47A1',
-              'brand-secondary': '#1976D2',
-              'brand-accent': '#FFC107',
-              'brand-light': '#BBDEFB',
-              'brand-dark': '#0A3881',
-            },
-          }
-        }
-      }
-    </script>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
-    "react/": "https://esm.sh/react@^19.1.0/",
-    "react": "https://esm.sh/react@^19.1.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar ROI Calculator - Morocco</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-  <body class="bg-gray-100 dark:bg-gray-900">
-    <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
+<body>
+    <header>
+        <h1>Solar ROI & Electricity Calculator for Morocco</h1>
+        <div class="theme-switcher">
+            <button id="theme-toggle">Toggle Dark Mode</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="inputs-section">
+            <h2>Configuration</h2>
+            <div class="input-group" id="consumption-input-group">
+                <label for="monthly-consumption">Monthly Electricity Consumption (kWh):</label>
+                <input type="number" id="monthly-consumption" value="450" min="0">
+            </div>
+
+            <div class="input-group" id="solar-panels-group">
+                <label for="num-panels">Number of Solar Panels:</label>
+                <input type="number" id="num-panels" value="1" min="0" max="20">
+                <input type="range" id="num-panels-slider" value="1" min="0" max="20" step="1" class="slider">
+                <button id="optimal-panels-btn">Use Optimal</button>
+            </div>
+
+            <div class="input-group">
+                <label for="advanced-mode-toggle">Advanced Mode:</label>
+                <input type="checkbox" id="advanced-mode-toggle">
+            </div>
+
+            <div id="advanced-inputs" class="hidden"> <!-- Initially hidden -->
+                <div class="input-group">
+                    <label for="panel-generation">Panel Generation (kWh/year/panel):</label>
+                    <input type="number" id="panel-generation" value="670">
+                </div>
+                <div class="input-group">
+                    <label for="panel-cost">Panel Installation Cost (USD/panel):</label>
+                    <input type="number" id="panel-cost" value="300">
+                </div>
+            </div>
+        </section>
+
+        <section id="results-section">
+            <h2>Results</h2>
+            <div class="output-group" id="current-costs">
+                <h3>Current Bill (No Solar)</h3>
+                <p>Monthly Cost: <span id="current-monthly-cost" class="value">-</span> MAD</p>
+                <p>Yearly Cost: <span id="current-yearly-cost" class="value">-</span> MAD</p>
+            </div>
+
+            <div class="output-group" id="solar-scenario">
+                <h3>Bill With Solar</h3>
+                <p>Monthly Cost with Solar: <span id="solar-monthly-cost" class="value">-</span> MAD</p>
+                <p>Yearly Cost with Solar: <span id="solar-yearly-cost" class="value">-</span> MAD</p>
+            </div>
+
+            <div class="output-group" id="savings-summary">
+                <h3>Savings & ROI</h3>
+                <p>Total Installation Cost: <span id="installation-cost-usd" class="value">-</span> USD (<span id="installation-cost-mad" class="value">-</span> MAD)</p>
+                <p>Annual Net Savings: <span id="annual-savings" class="value">-</span> MAD</p>
+                <p>Return on Investment (ROI): <span id="roi-years" class="value">-</span> years</p>
+            </div>
+
+            <div class="output-group" id="projected-savings">
+                <h3>Projected Net Savings <small>(after installation cost)</small></h3>
+                <p>After 5 Years: <span id="savings-5-years" class="value">-</span> MAD</p>
+                <p>After 10 Years: <span id="savings-10-years" class="value">-</span> MAD</p>
+                <p>After 20 Years: <span id="savings-20-years" class="value">-</span> MAD</p>
+            </div>
+        </section>
+
+        <section id="tier-info-section">
+            <h2>Electricity Tier Information <button id="toggle-tier-info" class="disclosure-button">(Show)</button></h2>
+            <div id="tier-table-container" class="hidden"> <!-- Initially hidden -->
+                <table id="tier-table">
+                    <thead>
+                        <tr>
+                            <th>Tier</th>
+                            <th>Consumption Range (kWh)</th>
+                            <th>Rate (MAD/kWh)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Tier data will be populated by JS -->
+                    </tbody>
+                </table>
+                <p class="note">Note: Morocco uses a non-progressive tier system. Your entire monthly consumption is billed at the rate of the highest tier you reach.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Calculations are estimates. Assumed Exchange Rate: 1 USD = <span id="exchange-rate-display">10</span> MAD.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,314 @@
+/* Global Variables & Theming */
+:root {
+    --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    /* --- Light Theme --- */
+    --bg-color: #f0f4f8;
+    --text-color: #1a202c;
+    --card-bg-color: #ffffff;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --input-bg-color: #ffffff;
+    --input-border-color: #cbd5e0;
+    --button-bg-color: #3182ce;
+    --button-text-color: #ffffff;
+    --button-hover-bg-color: #2b6cb0;
+    --accent-color: #ed8936; /* Orange accent */
+    --secondary-accent-color: #4299e1; /* Blue accent */
+    --border-color: #e2e8f0;
+    --note-text-color: #4a5568;
+    --link-color: #3182ce;
+}
+
+body.dark-mode {
+    /* --- Dark Theme --- */
+    --bg-color: #1a202c;
+    --text-color: #e2e8f0;
+    --card-bg-color: #2d3748;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --input-bg-color: #2d3748;
+    --input-border-color: #4a5568;
+    --button-bg-color: #4299e1;
+    --button-text-color: #1a202c;
+    --button-hover-bg-color: #2b6cb0;
+    /* --accent-color remains orange */
+    /* --secondary-accent-color can remain blue or change */
+    --border-color: #4a5568;
+    --note-text-color: #a0aec0;
+    --link-color: #63b3ed;
+}
+
+/* General Body & Layout */
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    color: var(--accent-color);
+    margin-bottom: 5px;
+}
+
+.theme-switcher {
+    margin-top: 10px;
+}
+
+#theme-toggle {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+#theme-toggle:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+/* Main Content Sections */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    gap: 30px;
+}
+
+section {
+    background-color: var(--card-bg-color);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+}
+
+section h2 {
+    margin-top: 0;
+    color: var(--secondary-accent-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Input Groups & Forms */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.input-group input[type="number"],
+.input-group input[type="range"],
+.input-group input[type="checkbox"] {
+    padding: 8px;
+    border: 1px solid var(--input-border-color);
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.input-group input[type="number"] {
+    width: 100px;
+    text-align: right;
+    padding-right: 5px;
+}
+.input-group input[type="checkbox"] {
+   vertical-align: middle;
+   margin-left: 5px;
+}
+
+/* Basic styling for range slider track */
+.input-group input[type="range"].slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: calc(100% - 120px); /* Default, can be overridden */
+    height: 8px;
+    background: var(--input-border-color); /* Track color */
+    border-radius: 5px;
+    outline: none;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+/* Thumb styling using accent-color (modern browsers) */
+.input-group input[type="range"].slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-color);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.input-group input[type="range"].slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--accent-color);
+    cursor: pointer;
+    border-radius: 50%;
+    border: none; /* Important for Firefox */
+}
+
+
+.input-group button,
+button.disclosure-button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+.input-group button:hover,
+button.disclosure-button:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Output & Results Display */
+.output-group {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: var(--bg-color); /* Slightly different bg for emphasis */
+    border-radius: 5px;
+}
+.output-group h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+    font-size: 1.1em;
+}
+.output-group p {
+    margin: 5px 0;
+}
+.output-group .value {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+#tier-info-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+#tier-info-section th, #tier-info-section td {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    text-align: left;
+}
+#tier-info-section th {
+    background-color: var(--bg-color);
+}
+.note {
+    font-size: 0.9em;
+    color: var(--note-text-color);
+    margin-top: 10px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9em;
+    color: var(--note-text-color);
+}
+
+/* Specific adjustments for side-by-side number and range inputs */
+#solar-panels-group label,
+#solar-panels-group input[type="number"],
+#solar-panels-group input[type="range"],
+#solar-panels-group button {
+    vertical-align: middle;
+    margin-right: 5px; /* Spacing between elements */
+}
+#solar-panels-group input[type="number"] {
+    width: 70px; /* Smaller width for panel number */
+}
+#solar-panels-group input[type="range"].slider { /* Be more specific */
+    width: calc(100% - 220px); /* Adjust width to fit button and number input */
+}
+#solar-panels-group button {
+    padding: 8px 10px;
+}
+
+#advanced-inputs {
+    padding: 15px;
+    border: 1px dashed var(--border-color);
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: rgba(0,0,0,0.02); /* Slight tint */
+}
+body.dark-mode #advanced-inputs {
+    background-color: rgba(255,255,255,0.02); /* Slight tint for dark mode */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    header h1 {
+        font-size: 1.5em;
+    }
+    section {
+        padding: 15px;
+    }
+    .input-group input[type="number"],
+    .input-group input[type="range"],
+    .input-group button {
+        width: auto; /* Allow flex behavior */
+        flex-grow: 1;
+    }
+    #solar-panels-group {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    #solar-panels-group label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    #solar-panels-group input[type="number"] {
+       flex-basis: 70px;
+       flex-grow: 0;
+       margin-bottom: 5px; /* Add margin if it wraps */
+    }
+    #solar-panels-group input[type="range"].slider { /* Be more specific */
+        flex-grow: 1;
+        min-width: 150px; /* Ensure slider has decent width */
+        margin-left: 0; /* Remove left margin if it was there */
+        margin-right: 5px; /* Keep some space from button */
+        margin-bottom: 5px; /* Add margin if it wraps */
+    }
+     #solar-panels-group button {
+        margin-top: 5px;
+        flex-basis: auto; /* Let it size by content */
+        padding: 8px 12px; /* Ensure padding is consistent */
+        margin-bottom: 5px; /* Add margin if it wraps */
+    }
+}
