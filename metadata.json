@@ -1,0 +1,6 @@
+{
+  "name": "Solar ROI & Electricity Cost Simulator",
+  "description": "A comprehensive simulator to calculate electricity costs based on a tiered rate system and analyze the Return on Investment (ROI) for installing solar panels.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
