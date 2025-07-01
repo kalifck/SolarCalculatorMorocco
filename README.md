@@ -3,6 +3,7 @@
 This document explains the functionality of the Solar ROI & Electricity Calculator, its utility within the Moroccan context, and details on the specific regulations it models.
 
 ## 1. Overview
+![image](https://github.com/user-attachments/assets/87376345-2c15-4bbd-9882-3f0990526b06)
 
 This calculator is designed to help users in Morocco:
 - Estimate their monthly and yearly electricity costs based on their consumption.
@@ -40,6 +41,9 @@ The calculator estimates electricity costs using a tiered tariff structure, as d
 | 301 - 500                     | 1.3817         |
 | 501+                          | 1.5958         |
 
+![image](https://github.com/user-attachments/assets/6d0e87e4-7f09-43bf-8e4b-e17993827e75)
+
+
 **Key Feature: Non-Progressive Billing**
 
 A crucial aspect of the electricity cost calculation modeled by this tool is its **non-progressive nature**. This means:
@@ -47,6 +51,9 @@ A crucial aspect of the electricity cost calculation modeled by this tool is its
 - For example, if you consume 250 kWh in a month, you fall into the "201-300 kWh" tier. Your entire 250 kWh will be billed at the rate of 1.1676 MAD/kWh, not just the portion above 200 kWh.
 
 This is implemented in the `calculateTieredCost` function within `utils/calculator.ts`. Understanding this billing method is vital for managing electricity expenses, as even a small increase in consumption can push you into a higher tier and significantly increase your overall bill.
+
+![image](https://github.com/user-attachments/assets/6c8f54aa-d746-4446-8694-956ecbb1176b)
+
 
 ## 4. Solar ROI Calculation
 
@@ -111,6 +118,8 @@ This calculator is particularly useful for electricity consumers in Morocco due 
     - Make more informed financial decisions about investing in solar energy.
     - Compare the long-term financial benefits of solar against the upfront investment.
     - Understand the impact of varying numbers of panels or different panel efficiencies (via Advanced Mode) on their potential savings.
+![image](https://github.com/user-attachments/assets/796db010-84cd-4954-8b46-d00c26cd6921)
+![image](https://github.com/user-attachments/assets/45c776cc-287a-4f40-9fa8-630ee457143d)
 
 **D. Encouraging Renewable Energy Adoption:**
 - **Utility:** By making the potential benefits of solar energy tangible and quantifiable, the calculator can encourage more Moroccan households and businesses to consider solar PV installations. This aligns with Morocco's national goals for increasing renewable energy usage.
